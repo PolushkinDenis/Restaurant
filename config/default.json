@@ -1,6 +1,6 @@
 {
   "port": 5000,
-  "jwtSecret": "vladilen youtube mern",
+  "jwtSecret": "Denis Poluskin tigras",
   "mongoUri": "mongodb+srv://tigras:samsung2700@cluster0.yy6uv.mongodb.net/app?retryWrites=true&w=majority",
   "baseUrl": "http://localhost:5000"
 }

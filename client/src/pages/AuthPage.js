@@ -1,5 +1,6 @@
 import React, {useContext, useEffect, useState} from 'react'
 import {useHttp} from '../hooks/http.hook'
+import { NavLink, useHistory } from 'react-router-dom'
 import {useMessage} from '../hooks/message.hook'
 import {AuthContext} from '../context/AuthContext'
 import img1 from '../images/register.jpg'
@@ -10,7 +11,7 @@ export const AuthPage = () => {
   const message = useMessage()
   const {loading, request, error, clearError} = useHttp()
   const [form, setForm] = useState({
-    email: '', password: ''
+    logun: '', password: ''
   })
 
   useEffect(() => {
@@ -26,17 +27,13 @@ export const AuthPage = () => {
     setForm({ ...form, [event.target.name]: event.target.value })
   }
 
-  const registerHandler = async () => {
-    try {
-      const data = await request('/api/auth/register', 'POST', {...form})
-      message(data.message)
-    } catch (e) {}
-  }
-
   const loginHandler = async () => {
     try {
       const data = await request('/api/auth/login', 'POST', {...form})
-      auth.login(data.token, data.userId)
+      /*console.log(data.token)
+      console.log(data.userId)
+      console.log(data.isAdmin)*/
+      auth.login(data.token, data.userId, data.isAdmin)
     } catch (e) {}
   }
 
@@ -53,15 +50,14 @@ export const AuthPage = () => {
 
               <div className="input-field">
                 <input
-                  placeholder="Введите email"
-                  id="email"
+                  placeholder="Введите логин"
+                  id="login"
                   type="text"
-                  name="email"
+                  name="login"
                   className="yellow-input"
-                  value={form.email}
+                  value={form.login}
                   onChange={changeHandler}
                 />
-                <label htmlFor="email">Email</label>
               </div>
 
               <div className="input-field">
@@ -74,7 +70,6 @@ export const AuthPage = () => {
                   value={form.password}
                   onChange={changeHandler}
                 />
-                <label htmlFor="email">Пароль</label>
               </div>
 
             </div>
@@ -88,13 +83,15 @@ export const AuthPage = () => {
             >
               Войти
             </button>
+           <div> <NavLink to="/registration">Зарегистрироваться</NavLink></div>
+{/* 
             <button
               className="btn grey lighten-1 black-text"
               onClick={registerHandler}
               disabled={loading}
             >
               Регистрация
-            </button>
+            </button> */}
           </div>
         </div>
       </div>

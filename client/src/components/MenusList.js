@@ -41,14 +41,14 @@ export const MenusList = ({ menus }) => {
           return (
       <div className="menus">
         <div>
-          <b>{menu.name}</b> <p>Грамм 100</p> <p>Состав {menu.structure}</p>
+          <b>{menu.name}</b> <p>Грамм {menu.weight}</p> <p>Состав {menu.structure}</p>
           <p>Цена {menu.price}</p>
           <input 
             placeholder="Название блюда"
-            id="cart"
+            id={menu._id}
             type="button"
-            value={menu.name}
-            onFocus={e => setCart(e.target.value)}
+            value="Добавить"
+            onFocus={e => setCart(e.target.id)}
             onClick={pressHandler}
             >
             </input>

@@ -24,8 +24,10 @@ router.post('/', auth, async (req, res) => {
     try {
   
       const {name} = req.body
+      const cart_data = await Menu.findById(name)
+
       const cart = new Cart({
-        name,  owner: req.user.userId
+        name: cart_data.name, price: cart_data.price,  owner: req.user.userId
       })
   
       await cart.save()
@@ -53,5 +55,7 @@ router.get('/:type', async (req, res)=> {
         res.status(500).json({ message: 'Что-то пошло не так, попробуйте снова' })
     }
 })
+
+
 
 module.exports = router

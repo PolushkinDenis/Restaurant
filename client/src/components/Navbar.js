@@ -21,6 +21,7 @@ export const Navbar = () => {
           {/* <li><NavLink to="/links">Ссылки</NavLink></li> */}
           {/* <li><NavLink to="/links">Ссылки</NavLink></li> */}
           <li><NavLink to="/menu">Меню</NavLink></li>
+          <li><NavLink to="/table">Забронировать стол</NavLink></li>
           <li><NavLink to="/feedback">Отзывы</NavLink></li>
           <li><NavLink to="/cart">Корзина</NavLink></li>
           <li><a href="/" onClick={logoutHandler}>Выйти</a></li>
