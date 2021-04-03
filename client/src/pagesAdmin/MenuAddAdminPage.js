@@ -4,12 +4,7 @@ import { useMessage } from '../hooks/message.hook'
 import {AuthContext} from '../context/AuthContext'
 import {Loader} from '../components/Loader'
 import {MenuAddAdmin} from '../componentsAdmin/MenuAddAdmin'
-
-import img11 from '../images/11.jpg'
-import img1 from '../images/1.jpg'
-import img2 from '../images/2.jpg'
-import img3 from '../images/3.jpg'
-
+import '../css/menuAddAdmin.css'
 export const MenusAddAdminPage = () => {
    
     const message = useMessage()
@@ -39,11 +34,10 @@ export const MenusAddAdminPage = () => {
   }
 
   return (
-    <div className="row">
+    <div className=" row-h3">
 
-        <b>Добавить продукт</b>
+        <h3>Добавить продукт</h3>
         <div className="foGrid">
-
           <div className="formy">
             <input
               placeholder="Название"
@@ -97,8 +91,9 @@ export const MenusAddAdminPage = () => {
               >
                 Добавить
             </button>
-
             </div>
+            <div className="link"><a href="/admin/menu">Назад</a></div>
+
           </div>
         </div>
       </div>

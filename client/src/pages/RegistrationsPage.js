@@ -22,13 +22,14 @@ export const RegistrationsPage = () => {
     window.M.updateTextFields()
   }, [])
 
-  const changeHandler = event => {
+  const changeHandler = event => {  
     setForm({ ...form, [event.target.name]: event.target.value })
   }
   
 
   const registerHandler = async () => {
     try {
+
       const data = await request('/api/auth/register', 'POST', {...form})
       message(data.message)
     } catch (e) {}
@@ -37,11 +38,10 @@ export const RegistrationsPage = () => {
   return (
 
     <div className="row">
-              <div className="regisImg"><img src={img1}></img></div>
-      <div className="col s6 offset-s3">
+      <div className="auth">
         <h1>London</h1>
-        <div className="card grey darken-1">
-          <div className="card-content white-text">
+        <div className="">
+          <div className="auth-input">
             <span className="card-title">Регистрация</span>
             <div>
 
@@ -89,7 +89,7 @@ export const RegistrationsPage = () => {
                   onChange={changeHandler}
                 />
               </div>
-              {/* <div className="input-field">
+               <div className="input-field">
                 <input
                   placeholder="Повторите пароль"
                   id="repead_password"
@@ -99,18 +99,18 @@ export const RegistrationsPage = () => {
                   //value={form.password}
                   onChange={changeHandler}
                 />
-              </div> */}
+              </div>
             </div>
           </div>
           <div className="card-action">
             <button
-              className="btn grey lighten-1 black-text"
+              className="auth-btn btn yellow darken-4"
               onClick={registerHandler}
               disabled={loading}
             >
               Регистрация
             </button>
-            <div><a href="/">Назад</a></div>
+            <div className="auth-link"><a href="/">Назад</a></div>
           </div>
         </div>
       </div>

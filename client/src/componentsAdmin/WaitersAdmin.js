@@ -1,14 +1,14 @@
-import React, {useContext, useEffect, useState} from 'react'
-import {useHttp} from '../hooks/http.hook'
-import {AuthContext} from '../context/AuthContext'
+import React, { useContext, useEffect, useState } from 'react'
+import { useHttp } from '../hooks/http.hook'
+import { AuthContext } from '../context/AuthContext'
 
-import {NavLink, useHistory} from 'react-router-dom'
+import { NavLink, useHistory } from 'react-router-dom'
 
 
 
 export const WaitersAdmin = ({ waiters }) => {
   const auth = useContext(AuthContext)
-  const {request} = useHttp()
+  const { request } = useHttp()
   const [waiter, setwWiters] = useState('')
 
   useEffect(() => {
@@ -21,30 +21,29 @@ export const WaitersAdmin = ({ waiters }) => {
   return (
     <div className="menuslist">
       <div className="menu"><h2>Официанты</h2> </div>
-      <div className="add-button">
-      <NavLink to="/admin/waiter/add">Добавить официанта</NavLink>
+      <div className="add-button yellow darken-4">
+        <NavLink to="/admin/waiter/add">Добавить официанта</NavLink>
       </div>
-      <div className="menu_grid">
-       { waiters.map((waiter, index) => {
-          return (
-              <div>
-                  <table class="table">
-            <tr>
-                <th>Имя;</th>
-                <th>Фамилия</th>
-                <th>Телефон</th>
-                <th>Логин</th>
+        <div>
+          <table class="table">
+            <tr className="gridTable">
+              <th>Имя</th>
+              <th>Фамилия</th>
+              <th>Телефон</th>
+              <th>Логин</th>
             </tr>
-            <tr>
-                <td>{waiter.name}</td>
-                <td>{waiter.sourname}</td>
-                <td>{waiter.tel}</td>
-                <td>{waiter.login}</td>
-            </tr>
-        </table>
+          </table>
         </div>
-       )})} 
-       </div>
+        {waiters.map((waiter, index) => {
+          return (
+            <tr className="gridTable">
+              <td>{waiter.name}</td>
+              <td>{waiter.sourname}</td>
+              <td>{waiter.tel}</td>
+              <td>{waiter.login}</td>
+            </tr>
+          )
+        })}
     </div>
   )
 }

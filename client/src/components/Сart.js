@@ -49,18 +49,6 @@ export const Cart = ({ carts }) => {
   }
 
 
-  /*const removeUser = () => {
-    const requestOptions = {
-      mode:'no-cors',
-      method: 'DELETE',
-      headers: { 'Content-Type': 'application/json' }
-    };
-
-    fetch(`http://localhost:5000/api/cart/${removeCart}`, requestOptions)
-      .then(response => response.json())
-      .catch(data => console.log(data));
-  }*/
-
   return (
     <div className="cart">
       <img src={img1}></img>

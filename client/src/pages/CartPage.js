@@ -18,9 +18,9 @@ export const CartPage = () => {
   const { token } = useContext(AuthContext)
   ////////////////////////////////////////////
   const auth = useContext(AuthContext)
-
   const [removeCart, setRemoveCart] = useState('')
   const [preparingOrder, setPreparingOrder] = useState('')
+  const [open, setOpen] = useState('')
 
 
   const remotePosition = async () => {
@@ -99,37 +99,50 @@ export const CartPage = () => {
     try {
       const data = await request(`/api/cart/order/${preparingOrder._id}`, 'PUT', { preparingOrder }
       )
-    } catch (e) { }
+      fetchCarts()
+      fetchOrders()
+    } catch (e) {
+      fetchCarts()
+      fetchOrders()
+    }
   }
   const checkCart = () => {
     if (!carts.length) {
       return <p className="center">Ваша корзина пуста</p>
     }
     else {
-      return <div>
+      return <div class="cart_main">
         {carts.map((carts, index) => {
           return (
-            <div className="forma">
-              <div className="forma_text">
-                <p>Товар {index + 1}</p>
-                <b>{carts.name}</b>
-                <p>{carts.price}</p>
-                <input
-                  placeholder="Название блюда"
-                  id={carts._id}
-                  type="button"
-                  value="Удалить"
-                  onFocus={e => setRemoveCart(e.target.id)}
-                  onClick={remotePosition}
-                >
-                </input>
+            <div class="cart_product">
+              <div class="cart_productVisualBlock">
+                <div class="cart_photoContainer">
+                  <img src={process.env.PUBLIC_URL + carts.photo} class="cart_photo" alt="фото"></img>
+                </div>
+                <div class="cart_productInfo">
+                  <div class="cart_productTitleWrapper">
+                    <p class="cart_productName">{carts.name}</p>
+                    <input class="cart_removeIcon"
+                      placeholder="Название блюда"
+                      id={carts._id}
+                      type="button"
+                      value="x"
+                      onFocus={e => setRemoveCart(e.target.id)}
+                      onClick={remotePosition}
+                    >
+                    </input>
+                  </div>
+                  <div class="cart_costAndQuantityWrapper">
+                    <p class="cartr_cost">{carts.price}₽</p>
+                  </div>
+                </div>
               </div>
             </div>
           )
         })}
-        <p>Сумма заказа: {sum()}</p>
+        <p className="total_sum">Сумма заказа: {sum()}</p>
         <button
-          className="btn grey lighten-1 black-text"
+          className="cart_button"
           onClick={makeOrder}
           disabled={loading}
         >
@@ -225,14 +238,33 @@ export const CartPage = () => {
   //     )
   //   }
   // }
-
+const AddToCart = (open ) => {
+  if (open == '0') return null;
+ 
   return (
-    <div className="cart">
-      <img src={img1}></img>
-      <div className="feedback">
+    <div className="full tr">
+      <button className="product--cart-button">Add to Cart</button>
+    </div>
+  );
+};
+  return (
+    <div>
+      <div className="cart"><img src={img1}></img></div>
+      <div className="feedbackk">
         <h2>Корзина</h2>
         <div>
           {checkCart()}
+        </div>
+        <div>
+          <input
+            placeholder="Открыть"
+            type="button"
+            id="1"
+            value="Открыть"
+            onFocus={e => setOpen(e.target.id)}
+            onClick={AddToCart}
+          >
+          </input>
         </div>
         <div>
           <h2>Активные заказы</h2>
@@ -249,8 +281,8 @@ export const CartPage = () => {
     </div >
 
     /*<>
-      {!loading && <Cart carts={carts} />}
-    </>*/
+        {!loading && <Cart carts={carts} />}
+      </>*/
   )
 }
 

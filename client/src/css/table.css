@@ -1,3 +1,12 @@
+.table-image{
+    text-align: center;
+    color: aliceblue;
+    min-height: 150px;
+    background-image: url(../images/fon.png);
+    background-size:100%;
+    margin-bottom: 2%;
+}
+
 .Menu h2{
     text-align: center;
 }
@@ -10,7 +19,7 @@
 .Menu_forma{
     width: 49%;
     min-width: 290px;
-    max-height: 240px;
+    min-height: 300px;
     margin-bottom: 2%;
     box-sizing: border-box;
     display: flex;
@@ -32,7 +41,6 @@
 .menu_position_main{
     min-width: 60%;
     min-height: 60%;
-
     padding: 30px;
     display: -moz-box;
     display: flex;
@@ -48,7 +56,6 @@
 .menu_position{
     min-width: 60%;
     max-width: 60%;
-
     padding: 30px;
     display: flex;
     flex-direction: column;
@@ -68,6 +75,8 @@
     justify-content: space-between;
     padding-top: 20px;
     height: 30px;
+}
+.menu_position_description{
 }
 .position_price{
     font-family: TTNormsPro-Regular;

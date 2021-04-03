@@ -3,6 +3,8 @@ import {useHttp} from '../hooks/http.hook'
 import {AuthContext} from '../context/AuthContext'
 import {useHistory} from 'react-router-dom'
 import '../css/allStyle.css'
+import '../css/statistikaAdmin.css'
+
 import { Line } from 'react-chartjs-2';
 
 
@@ -22,7 +24,7 @@ export const StatisticsAdmin = ({ statistics }) => {
     labels: ["1", "2", "3", "4", "5", "6", "7", "8"],
     datasets: [
       {
-        label: "Цена за шт.",
+        label: "Заказов шт.",
         data: [12, 19, 3, 5, 2, 3, 14],
         fill: false,
         backgroundColor: "#a68156",
@@ -87,6 +89,11 @@ export const StatisticsAdmin = ({ statistics }) => {
           <div className="good-item-wrapper">
             <div className="good-item item-1"></div>
             <div className="good-item-stats">
+              <h3>Заказов по дням</h3>
+              <Line data={data} options={options} /> 
+            </div>
+            <div className="good-item-stats">
+              <h3>Средний чек по дням</h3>
               <Line data={data} options={options} /> 
             </div>
           </div>

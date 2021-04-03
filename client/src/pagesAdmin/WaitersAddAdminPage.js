@@ -37,10 +37,10 @@ export const WaitersAddAdminPage = () => {
   return (
 
     <div className="row">
-      <div className="col s6 offset-s3">
+      <div className="auth">
         <h1>London</h1>
-        <div className="card grey darken-1">
-          <div className="card-content white-text">
+        <div className="">
+          <div className="auth-input">
             <span className="card-title">Добавить официанта</span>
             <div>
 
@@ -99,7 +99,7 @@ export const WaitersAddAdminPage = () => {
                   onChange={changeHandler}
                 />
               </div>
-              {/* <div className="input-field">
+               <div className="input-field">
                 <input
                   placeholder="Повторите пароль"
                   id="repead_password"
@@ -109,7 +109,7 @@ export const WaitersAddAdminPage = () => {
                   //value={form.password}
                   onChange={changeHandler}
                 />
-              </div> */}
+              </div>
             </div>
           </div>
           <div className="card-action">
@@ -120,7 +120,7 @@ export const WaitersAddAdminPage = () => {
             >
               Зарегистрировать
             </button>
-            <div><a href="/">Назад</a></div>
+            <div><a href="/admin/waiter">Назад</a></div>
           </div>
         </div>
       </div>

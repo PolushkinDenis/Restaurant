@@ -3,6 +3,7 @@ import {useHttp} from '../hooks/http.hook'
 import {AuthContext} from '../context/AuthContext'
 import {useHistory} from 'react-router-dom'
 import '../css/allStyle.css'
+import '../css/feedback.css'
 
 import img1 from '../images/feedback.jpg'
 
@@ -24,7 +25,7 @@ export const Feedback = ({ feedbacks }) => {
     <div className="feedback">
       <div><img src={img1}></img></div>
       <h2>Ваши отзывы</h2>
-        { feedbacks.map((feedbacks, index) => {
+        {/* { feedbacks.map((feedbacks, index) => {
         return (
           <div className="forma">
 
@@ -34,30 +35,24 @@ export const Feedback = ({ feedbacks }) => {
             <p>{feedbacks.comment}</p>
             </div>
             </div>
-
         )
-      }) }
+      }) } */}
       <div>
-   {/* <table>
-      <thead>
-      <tr>
-        <th>№</th>
-        <th>Имя</th>
-        <th>Отзыв</th>
-      </tr>
-      </thead>
-      <tbody>
+
+      <div class="row">
       { feedbacks.map((feedbacks, index) => {
         return (
-          <tr key={feedbacks._id}>
-            <td>{index + 1}</td>
-            <td>{feedbacks.name}</td>
-            <td>{feedbacks.comment}</td>
-          </tr>
-        )
-      }) }
-      </tbody>
-    </table> */}
+          <div class="col">
+            <div class="testimonial">
+            <img src={process.env.PUBLIC_URL + "/avatar-man.png"}  alt="аватар"></img>
+              <div class="name">{feedbacks.name}</div>
+              <p>{feedbacks.comment}</p>
+          </div>
+          </div>
+  )
+}) }
+        </div>
+        
     </div>
     </div>
   )

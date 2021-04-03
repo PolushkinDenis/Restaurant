@@ -27,7 +27,7 @@ router.post('/', auth, async (req, res) => {
       const cart_data = await Menu.findById(name)
 
       const cart = new Cart({
-        name: cart_data.name, price: cart_data.price,  owner: req.user.userId
+        name: cart_data.name, price: cart_data.price, photo: cart_data.photo, owner: req.user.userId
       })
   
       await cart.save()

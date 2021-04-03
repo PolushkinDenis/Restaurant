@@ -5,6 +5,7 @@ import {useMessage} from '../hooks/message.hook'
 import {AuthContext} from '../context/AuthContext'
 import img1 from '../images/register.jpg'
 import '../css/allStyle.css'
+import '../css/auth.css'
 
 export const AuthPage = () => {
   const auth = useContext(AuthContext)
@@ -13,6 +14,8 @@ export const AuthPage = () => {
   const [form, setForm] = useState({
     logun: '', password: ''
   })
+  const [liginError, setLoginError] = useState([])
+ 
 
   useEffect(() => {
     message(error)
@@ -24,15 +27,17 @@ export const AuthPage = () => {
   }, [])
 
   const changeHandler = event => {
+
     setForm({ ...form, [event.target.name]: event.target.value })
   }
 
   const loginHandler = async () => {
-    try {
+    // if (form.logun == '' || form.password == '') {
+    //   setLoginError('Необходимо заполнить все поля')
+    //   return;
+    // }
+    try { 
       const data = await request('/api/auth/login', 'POST', {...form})
-      /*console.log(data.token)
-      console.log(data.userId)
-      console.log(data.isAdmin)*/
       auth.login(data.token, data.userId, data.isAdmin)
     } catch (e) {}
   }
@@ -40,14 +45,12 @@ export const AuthPage = () => {
   return (
 
     <div className="row">
-              <div className="regisImg"><img src={img1}></img></div>
-      <div className="col s6 offset-s3">
+      <div className="auth">
         <h1>London</h1>
-        <div className="card grey darken-1">
-          <div className="card-content white-text">
+        <div className="">
+          <div className="auth-input">
             <span className="card-title">Авторизация</span>
             <div>
-
               <div className="input-field">
                 <input
                   placeholder="Введите логин"
@@ -76,22 +79,16 @@ export const AuthPage = () => {
           </div>
           <div className="card-action">
             <button
-              className="btn yellow darken-4"
-              style={{marginRight: 10}}
+              className="auth-btn btn yellow darken-4"
               disabled={loading}
               onClick={loginHandler}
             >
               Войти
             </button>
-           <div> <NavLink to="/registration">Зарегистрироваться</NavLink></div>
-{/* 
-            <button
-              className="btn grey lighten-1 black-text"
-              onClick={registerHandler}
-              disabled={loading}
-            >
-              Регистрация
-            </button> */}
+            <div>
+          
+            </div>
+           <div className="auth-link"> <NavLink to="/registration">Зарегистрироваться</NavLink></div>
           </div>
         </div>
       </div>

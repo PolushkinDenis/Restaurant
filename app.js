@@ -19,13 +19,13 @@ app.use('/api/cart/:id', require('./routes/cart.routes'))
 app.use('/api/cart/clean/:id', require('./routes/cart.routes'))
 app.use('/api/cart/order', require('./routes/cart.routes'))
 app.use('/api/cart/order/:id', require('./routes/cart.routes'))
+  
 
 // для заказа
 app.use('/api/order', require('./routes/order.routes'))
 //Столы
 app.use('/api/table', require('./routes/table.routes'))
 app.use('/api/table/:id', require('./routes/table.routes'))
-
 
 //отзыв
 app.use('/api/create', require('./routes/feedback.routes'))

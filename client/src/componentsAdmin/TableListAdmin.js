@@ -6,6 +6,7 @@ import { Loader } from '../components/Loader'
 import { MenuAddAdmin } from '../componentsAdmin/MenuAddAdmin'
 import { NavLink, useHistory } from 'react-router-dom'
 import '../css/menu.css'
+import '../css/tableAdmin.css'
 
 export const TableListAdmin = ({ tables }) => {
     const message = useMessage()
@@ -23,7 +24,7 @@ export const TableListAdmin = ({ tables }) => {
     }, [error, message, clearError])
     useEffect(() => {
         window.M.updateTextFields()
-      }, [])
+    }, [])
     if (!tables.length) {
         return <p className="center">Список столов пуст</p>
     }
@@ -32,36 +33,31 @@ export const TableListAdmin = ({ tables }) => {
 
     const cancelReservation = async () => {
         try {
-            alert("Снятие брони")
             const data = await request('/api/admin/table/^id', 'Delete', null,)
-            alert("Бронь снята")
 
         } catch (e) {
             alert("Не удалось снять бронь")
-
         }
     }
     const setReservation = async () => {
         try {
-            alert("Бронирование")
             const data = await request('/api/admin/table/^id', 'Delete', null,)
-            alert("Забронировано")
-
-        } catch (e) {}
+        } catch (e) { }
     }
     const checkBooked = (booked) => {
         if (booked == false) {
             return (
                 <div>
-                    <p>'Не забронировано'</p>
+                    <p>Не забронировано</p>
                     <div className="Menu_price">
                         <input
-                            placeholder="Номер стола"
+                            className="btn grey"
+                            placeholder="Забронировать"
                             id={table._id}
                             type="button"
-                            value="Снять бронь"
+                            value="Забронировать"
                             onFocus={e => setTable(e.target.id)}
-                            onClick={cancelReservation}
+                            onClick={setReservation}
                         >
                         </input>
                     </div>
@@ -71,15 +67,16 @@ export const TableListAdmin = ({ tables }) => {
         else {
             return (
                 <div>
-                    <p>'Забронировано'</p>
+                    <p>Забронировано</p>
                     <div className="Menu_price">
                         <input
-                            placeholder="Номер стола"
+                            className="btn grey"
+                            placeholder="Снять бронь"
                             id={table._id}
                             type="button"
-                            value="Забронировать"
+                            value="Снять бронь"
                             onFocus={e => setTable(e.target.id)}
-                            onClick={setReservation}
+                            onClick={cancelReservation}
                         >
                         </input>
                     </div>
@@ -97,13 +94,13 @@ export const TableListAdmin = ({ tables }) => {
             const data = await request('/api/admin/table/create', 'POST', { ...form })
             message(data.message)
 
-        } catch (e) {}
+        } catch (e) { }
     }
 
     return (
         <div className="menuslist">
             <div className="menu"><h2>Столы</h2> </div>
-            <div className="add-button">
+            <div className="add-button yellow darken-4">
                 <NavLink to="/admin/menu/add">Добавить</NavLink>
             </div>
 
@@ -120,7 +117,9 @@ export const TableListAdmin = ({ tables }) => {
                                     <div className="menu_position_price">
                                         <p className="position_price">{checkBooked(table.booked)} </p>
                                     </div>
+
                                 </div>
+
                                 <div className="Menu_image">
                                     <img src={process.env.PUBLIC_URL + table.photo}></img>
                                 </div>
@@ -168,7 +167,7 @@ export const TableListAdmin = ({ tables }) => {
                             </div>
                         </div>
                         <div className="Menu_image">
-                           <p>Здесь надо добавть фото</p>
+                            <p>Здесь надо добавть фото</p>
                         </div>
                     </div>
                 </div>

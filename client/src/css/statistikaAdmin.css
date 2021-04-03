@@ -1,0 +1,6 @@
+.statistics h2{
+    text-align: center;
+}
+.good-item-stats canvas{
+    max-height: 300px;
+}
