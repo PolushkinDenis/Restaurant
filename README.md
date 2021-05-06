@@ -1,3 +1,3 @@
 # Restaurant
-Web service for automating the restaurant operation process
-stack used: MERN
+Web service for automating the restaurant operation process. 
+Stack used: MERN
